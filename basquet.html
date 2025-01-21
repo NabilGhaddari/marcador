@@ -5,7 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marcador de Bàsquet</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="funcions.js"></script>
 </head>
+<body>
+<div class="container mt-5">
+  <h1 class="text-center">Contador</h1>
+
+  <!-- Cronómetro -->
+  <div class="row mt-4">
+    <div class="col text-center">
+      <h2 id="timer">10:00</h2>
+      <button class="btn btn-danger" onclick="startCountdown()">Inicia Contador</button>
+      <button class="btn btn-success" onclick="resetCountdown()">Reiniciar Contador</button>
+      <button class="btn btn-warning" onclick="pauseCountdown()">Pausa</button>
+      <button class="btn btn-info" onclick="resumeCountdown()">Reanudar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Variables del contador
+  let timerInterval;  // Para almacenar el setInterval
+  let remainingTime = 600;  // 10 minutos en segundos (600 segundos)
+  let isCountingDown = false;  // Estado del contador
+  let isPaused = false;  // Flag para saber si está pausado
+
+  // Función para iniciar el contador
+  function startCountdown() {
+    if (!isCountingDown && !isPaused) {
+      isCountingDown = true;
+      timerInterval = setInterval(updateCountdown, 1000);  // Llama a updateCountdown cada segundo
+    }
+  }
+
+  // Función para actualizar el contador
+  function updateCountdown() {
+    // Si el tiempo llega a 0, detener el contador
+    if (remainingTime <= 0) {
+      clearInterval(timerInterval);
+      alert("¡El tiempo se ha agotado!");
+      isCountingDown = false;
+    } else {
+      // Restar 1 segundo del tiempo restante
+      remainingTime--;
+
+      // Mostrar el tiempo restante en formato mm:ss
+      let minutes = Math.floor(remainingTime / 60);
+      let seconds = remainingTime % 60;
+      document.getElementById('timer').textContent = `${formatTime(minutes)}:${formatTime(seconds)}`;
+    }
+  }
+
+  // Función para formatear el tiempo con 2 dígitos
+  function formatTime(time) {
+    return time < 10 ? `0${time}` : time;  // Si el tiempo es menor que 10, agregar el cero
+  }
+
+  // Función para reiniciar el contador
+  function resetCountdown() {
+    remainingTime = 600;  // Reiniciar a 10 minutos (600 segundos)
+    clearInterval(timerInterval);  // Detener el contador si está en marcha
+    isCountingDown = false;
+    isPaused = false;
+    document.getElementById('timer').textContent = '10:00';  // Restablecer el tiempo en pantalla
+  }
+
+  // Función para pausar el contador
+  function pauseCountdown() {
+    if (isCountingDown) {
+      clearInterval(timerInterval);  // Detener el contador
+      isCountingDown = false;
+      isPaused = true;
+    }
+  }
+
+  // Función para reanudar el contador
+  function resumeCountdown() {
+    if (!isCountingDown && isPaused) {
+      isCountingDown = true;
+      isPaused = false;
+      timerInterval = setInterval(updateCountdown, 1000);  // Reanudar el contador
+    }
+  }
+</script>
+</body>
 <body>
 <div class="container">
   <header class="title text-center">Marcador de Bàsquet</header>
@@ -13,45 +97,43 @@
   <div class="period-container text-center">
     <div id="period" class="period-number">1</div>
   </div>
-  <table class="scoreboard">
+  <table class="table table-dark table-striped">
     <tbody>
     <tr>
       <td>Equipo A</td>
       <td>Equipo B</td>
     </tr>
     <tr>
-      <td id="points-a">60</td>
-      <td id="points-b">45</td>
+      <td id="points-a">0</td>
+      <td id="points-b">0</td>
     </tr>
     <tr>
-      <td id="fouls-a">3</td>
-      <td id="fouls-b">2</td>
+      <td id="fouls-a">0</td>
+      <td id="fouls-b">0</td>
     </tr>
     <tr>
       <td>
-        <button class="score-button">+1</button>
-        <button class="score-button">+2</button>
-        <button class="score-button">+3</button>
-        <button class="score-button">Falta</button>
+        <button class="score-button" onclick="sumar(1)">+1</button>
+        <button class="score-button" onclick="sumar(2)">+2</button>
+        <button class="score-button" onclick="sumar(3)">+3</button>
+        <button class="score-button" onclick="falta()">Falta</button>
       </td>
       <td>
-        <button class="score-button">+1</button>
-        <button class="score-button">+2</button>
-        <button class="score-button">+3</button>
-        <button class="score-button">Falta</button>
+        <button class="score-button" onclick="suma(1)">+1</button>
+        <button class="score-button" onclick="suma(2)">+2</button>
+        <button class="score-button" onclick="suma(3)">+3</button>
+        <button class="score-button" onclick="faltes()">Falta</button>
       </td>
     </tr>
     </tbody>
   </table>
   <div class="gestor">
-    <td><button class="score-button" id="reset">Iniciar partida</button></td>
-    <td><button class="score-button" id="canviPeriode">Canvi de període</button></td>
+    <td><button class="score-button" id="reset" onclick="inicializar()">Iniciar partida</button></td>
+    <td><button class="score-button" id="canviPeriode" onclick="period()">Canvi de període</button></td>
   </div>
-  <div class="history">
+  <div class="historial" onclick="historial()">
     <h2>Historial de la Partida</h2>
-    <p>3-0</p>
-    <p>3-2</p>
-    <p>...</p>
+
 
   </div>
 </div>
