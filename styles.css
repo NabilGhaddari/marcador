@@ -4,17 +4,32 @@ body {
   background-color: #ffffff;
 }
 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('http://webipedia.es/wp-content/uploads/2020/11/06_PelotaEntrandoACanasta.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; /* Esto hace que el fondo no se mueva al hacer scroll */
+}
+
 .container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr;*
   grid-gap: 20px;
   padding: 20px;
 }
 
 .title {
+  background-color: rgb(248, 0, 0); /* Fondo negro semitransparente */
+  color: #ffffff; /* Color del texto blanco */
+  padding: 10px; /* Espaciado interno alrededor del texto */
+  display: inline-block; /* El fondo ajusta al tamaño del texto */
+  border-radius: 45px; /* Bordes redondeados (opcional) */
   text-align: center;
-  font-size: 28px;
-  color: #338733; /* Color del títol */
+  font-size: 80px;
+  color: #000000; /* Color del títol */
 }
 
 .links {
@@ -50,17 +65,19 @@ body {
 }
 
 .history {
-  background-color: #f2f2f2; /* Color de fons per l'historial */
+  background-color: #ff0000; /* Color de fons per l'historial */
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-top: none;
-  margin-top: 20px;
+  margin-top: 10px;
+
 }
 
 .history h2 {
   font-size: 24px;
-  color: #4d4d33; /* Color del títol de l'historial en color fons verd més fort */
+  color: black;
 }
+
 
 .history p {
   font-size: 18px;
@@ -127,6 +144,14 @@ body {
   display: inline-block;
 }
 
+#timer {
+  text-align: center;
+  color: #00fffc;
+}
 
+#itimer {
+  text-align: center;
+  color: #00fffc;
+}
 
 

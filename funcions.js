@@ -3,7 +3,7 @@ let punts_b = 0;
 let faltes_a = 0;
 let faltes_b = 0;
 let period1 = 1;
-let historia = [];
+let historial1 = [];
 
 function inicializar() {
     punts_a = 0;
@@ -16,11 +16,9 @@ function inicializar() {
     document.getElementById("fouls-a").innerHTML = 0;
     document.getElementById("fouls-b").innerHTML = 0;
     document.getElementById("period").innerHTML = 1;
-    historia = [];
-    const historialDiv= doument.querySelector(".history");
-    historialDiv.innerHTML = "<h2>Historial de la Partida</h2>";
-    // Inicia la partida en funció q torna tots els punts a 0
-
+    historial1 = [];
+    const historialDiv = document.querySelector('.history');
+    historialDiv.innerHTML = "<h2>Historial de la Partida<h2/>";
 }
 
 function period() {
@@ -75,9 +73,13 @@ function faltes() {
 }
 
 function actualitzar() {
-    let registre= punts_a + " - " + punts_b;
-    let historialDiv= document.querySelector(".history");
-    historialDiv.innerHTML = "<p>" + registre + "</p>" + historialDiv.innerHTML;
-}
+    //Nou registre
+    let registre = punts_a + " - " + punts_b;
+    //Per seleccionar l'historial
+    let historialDiv = document.querySelector(".history");
+    //Posar el nou registre i en ordre
 
+    historialDiv.innerHTML = "<p>" + registre + "</p>" + historialDiv.innerHTML;
+
+}
 
