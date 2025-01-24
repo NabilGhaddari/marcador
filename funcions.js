@@ -4,6 +4,7 @@ let faltes_a = 0;
 let faltes_b = 0;
 let period1 = 1;
 let historial1 = [];
+// Variables
 
 function inicializar() {
     punts_a = 0;
@@ -19,10 +20,12 @@ function inicializar() {
     historial1 = [];
     const historialDiv = document.querySelector('.history');
     historialDiv.innerHTML = "<h2>Historial de la Partida<h2/>";
+    //Inicia la partida i fa que l'historial torni a 0
 }
 
 function period() {
-    // sumar períodes fins el cuatre y torna a 1
+    // sumar períodes fins el cuatre i si empaten es posen un temps extra i quan guanya un equip es posa Fin
+    // Quan canvies de període les faltes es reinicien
     if (period1 < 4) {
         period1 = period1 + 1;
         faltes_a = 0;
@@ -73,9 +76,9 @@ function faltes() {
 }
 
 function actualitzar() {
-    //Nou registre
+    // Tenim un nou registre
     let registre = punts_a + " - " + punts_b;
-    //Per seleccionar l'historial
+    //Seleccionam l'historial
     let historialDiv = document.querySelector(".history");
     //Posar el nou registre i en ordre
 
