@@ -82,7 +82,7 @@ function actualitzar() {
     let historialDiv = document.querySelector(".history");
     //Posar el nou registre i en ordre
 
-    historialDiv.innerHTML = "<p>" + registre + "</p>" + historialDiv.innerHTML;
+    historialDiv.innerHTML += "<p>" + registre + "</p>" ;
 
 }
 
